@@ -6,8 +6,8 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :glooko, Glooko.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "root",
+  password: "root",
   hostname: "localhost",
   database: "glooko_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
@@ -25,7 +25,3 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
-
-config :phoenix_live_view,
-  # Enable helpful, but potentially expensive runtime checks
-  enable_expensive_runtime_checks: true

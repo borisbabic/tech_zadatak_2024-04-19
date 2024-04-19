@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :glooko, Glooko.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "root",
+  password: "root",
   hostname: "localhost",
-  database: "glooko_dev",
+  database: "glooko_db",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
