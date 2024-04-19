@@ -1,0 +1,12 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:15
+    container_name: glooko_db
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=glooko_db 
+
