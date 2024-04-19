@@ -101,4 +101,100 @@ defmodule Glooko.Devices do
   def change_device(%Device{} = device, attrs \\ %{}) do
     Device.changeset(device, attrs)
   end
+
+  alias Glooko.Devices.DeviceReading
+
+  @doc """
+  Returns the list of device_readings.
+
+  ## Examples
+
+      iex> list_device_readings()
+      [%DeviceReading{}, ...]
+
+  """
+  def list_device_readings do
+    Repo.all(DeviceReading)
+  end
+
+  @doc """
+  Gets a single device_reading.
+
+  Raises `Ecto.NoResultsError` if the Device reading does not exist.
+
+  ## Examples
+
+      iex> get_device_reading!(123)
+      %DeviceReading{}
+
+      iex> get_device_reading!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_device_reading!(id), do: Repo.get!(DeviceReading, id)
+
+  @doc """
+  Creates a device_reading.
+
+  ## Examples
+
+      iex> create_device_reading(%{field: value})
+      {:ok, %DeviceReading{}}
+
+      iex> create_device_reading(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_device_reading(attrs \\ %{}) do
+    %DeviceReading{}
+    |> DeviceReading.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a device_reading.
+
+  ## Examples
+
+      iex> update_device_reading(device_reading, %{field: new_value})
+      {:ok, %DeviceReading{}}
+
+      iex> update_device_reading(device_reading, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_device_reading(%DeviceReading{} = device_reading, attrs) do
+    device_reading
+    |> DeviceReading.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a device_reading.
+
+  ## Examples
+
+      iex> delete_device_reading(device_reading)
+      {:ok, %DeviceReading{}}
+
+      iex> delete_device_reading(device_reading)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_device_reading(%DeviceReading{} = device_reading) do
+    Repo.delete(device_reading)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking device_reading changes.
+
+  ## Examples
+
+      iex> change_device_reading(device_reading)
+      %Ecto.Changeset{data: %DeviceReading{}}
+
+  """
+  def change_device_reading(%DeviceReading{} = device_reading, attrs \\ %{}) do
+    DeviceReading.changeset(device_reading, attrs)
+  end
 end

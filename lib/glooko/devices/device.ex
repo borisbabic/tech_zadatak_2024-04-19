@@ -16,7 +16,7 @@ defmodule Glooko.Devices.Device do
   @doc false
   def changeset(device, attrs) do
     device
-    |> cast(attrs, [:manufacturer, :model, :serial_number])
+    |> cast(attrs, [:manufacturer, :model, :serial_number, :user_id])
     |> validate_required([:manufacturer, :model, :serial_number])
     |> unique_constraint(:serial_number)
   end

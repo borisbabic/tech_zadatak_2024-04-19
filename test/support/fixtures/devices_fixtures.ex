@@ -19,4 +19,21 @@ defmodule Glooko.DevicesFixtures do
 
     device
   end
+
+  @doc """
+  Generate a device_reading.
+  """
+  def device_reading_fixture(attrs \\ %{}, device_attrs \\ %{}) do
+    %{id: device_id} = device_fixture(device_attrs)
+    {:ok, device_reading} =
+      attrs
+      |> Enum.into(%{
+        device_id: device_id,
+        glucose_value: 42,
+        timestamp: ~U[2024-04-18 18:53:00Z]
+      })
+      |> Glooko.Devices.create_device_reading()
+
+    device_reading
+  end
 end
