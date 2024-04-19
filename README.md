@@ -6,7 +6,7 @@ Tech part of an interview
 * `docker-compose up -d`
 * `mix deps.get` 
 * `mix ecto.setup` # setup db
-* `iex -S mix phx.server` -- run in iex
+* `iex -S mix phx.server` -- run project
 
 # Task
 - DB model and REST api to support graph and calendar, no gui or auth
@@ -31,7 +31,8 @@ Tech part of an interview
 
 ## Account setup
 - select device(s)
-- reading belongs to user if device assoiciated with the user
+- reading belongs to user if device associated with the user
+- **Assumption** - a device can only belong to one user (at a time) 
 
 # Overviews 
 ## User Overview (Graph)

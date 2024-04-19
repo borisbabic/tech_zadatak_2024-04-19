@@ -10,19 +10,46 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 alias Glooko.Accounts.User
+alias Glooko.Devices.Device
 
-Glooko.Repo.insert!(%User{
-  first_name: "Boris",
-  last_name: "Babic",
-  email: "boris.ivan.babic@gmail.com",
-  phone_number: "1-800-555-001",
-  date_of_birth: ~D[1970-01-01]
-})
+boris =
+  Glooko.Repo.insert!(%User{
+    first_name: "Boris",
+    last_name: "Babic",
+    email: "boris.ivan.babic@gmail.com",
+    phone_number: "1-800-555-001",
+    date_of_birth: ~D[1970-01-01]
+  })
 
-Glooko.Repo.insert!(%User{
-  first_name: "Kristijan",
-  last_name: "Novoselic",
-  email: "kristijan@example.com",
-  phone_number: "1-800-555-001",
-  date_of_birth: ~D[1970-01-02]
-})
+kristijan =
+  Glooko.Repo.insert!(%User{
+    first_name: "Kristijan",
+    last_name: "Novoselic",
+    email: "kristijan@example.com",
+    phone_number: "1-800-555-001",
+    date_of_birth: ~D[1970-01-02]
+  })
+
+deice_boris_1 =
+  Glooko.Repo.insert!(%Device{
+    manufacturer: "Porsche",
+    model: "T-1000",
+    serial_number: "ser-num-1",
+    user_id: boris.id
+  })
+
+device_boris_2 =
+  Glooko.Repo.insert!(%Device{
+    manufacturer: "Ferrari",
+    model: "9001",
+    serial_number: "ser-num-2",
+    user_id: boris.id
+  })
+
+device_kris_1 =
+  Glooko.Repo.insert!(%Device{
+    manufacturer: "Porsche",
+    model: "T-1000",
+    serial_number: "ser-num-3",
+    user_id: kristijan.id
+  })
