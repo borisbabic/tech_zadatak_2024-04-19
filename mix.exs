@@ -37,6 +37,7 @@ defmodule Glooko.MixProject do
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 1.0"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
