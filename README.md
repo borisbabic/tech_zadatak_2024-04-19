@@ -8,6 +8,9 @@ Tech part of an interview
 * `mix ecto.setup` # setup db
 * `iex -S mix phx.server` -- run project
 
+The site should be up at http://localhost:4000, api docs available at http://localhost:4000/swaggerui
+
+
 # Task
 - DB model and REST api to support graph and calendar, no gui or auth
 - **Assumption** For the purpose of the interview it's not necessary to care about things like timezones, ie approach it like when physicists assume there is no friction
