@@ -5,6 +5,7 @@ defmodule Glooko.Devices.DeviceReading do
 
   alias Glooko.Devices.Device
 
+  @derive {Jason.Encoder, only: [:glucose_value, :timestamp, :device_id]}
   schema "device_readings" do
     field :glucose_value, :integer
     field :timestamp, :utc_datetime

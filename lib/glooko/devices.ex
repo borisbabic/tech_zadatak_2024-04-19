@@ -213,4 +213,64 @@ defmodule Glooko.Devices do
     )
     |> Repo.all()
   end
+
+  @spec user_readings(
+          user_id :: integer(),
+          date_range :: {Date.t(), Date.t()},
+          devices :: [integer()]
+        ) :: [DeviceReading.t()]
+  def user_readings(user_id, {start_date, end_date}, devices \\ []) do
+    device_readings([
+      {:user_id, user_id},
+      {:start_date, start_date},
+      {:end_date, end_date},
+      {:devices, devices}
+    ])
+  end
+
+  @type readings_criteria ::
+          {:user_id, integer() | String.t()}
+          | {:device_ids, [integer()]}
+          | {:start_date, Date.t()}
+          | {:end_date, Date.t()}
+  @spec device_readings(criteria :: readings_criteria()) :: [DeviceReading.t()]
+  def device_readings(criteria) do
+    base_readings_query()
+    |> build_readings_query(criteria)
+    |> Repo.all()
+  end
+
+  defp base_readings_query() do
+    from(dr in DeviceReading,
+      as: :reading,
+      inner_join: d in assoc(dr, :device),
+      as: :device
+    )
+  end
+
+  defp build_readings_query(query, criteria) do
+    Enum.reduce(criteria, query, &compose_readings_query/2)
+  end
+
+  defp compose_readings_query({:user_id, user_id}, query) do
+    query
+    |> where([device: d], d.user_id == ^user_id)
+  end
+
+  defp compose_readings_query({:devices, []}, query), do: query
+
+  defp compose_readings_query({:devices, devices}, query) do
+    query
+    |> where([reading: rd], rd.device_id in ^devices)
+  end
+
+  defp compose_readings_query({:start_date, start_date}, query) do
+    query
+    |> where([reading: rd], fragment("?::date", rd.timestamp) >= ^start_date)
+  end
+
+  defp compose_readings_query({:end_date, end_date}, query) do
+    query
+    |> where([reading: rd], fragment("?::date", rd.timestamp) >= ^end_date)
+  end
 end

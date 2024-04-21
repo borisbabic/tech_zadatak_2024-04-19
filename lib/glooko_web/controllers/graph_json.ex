@@ -1,3 +1,3 @@
 defmodule GlookoWeb.GraphJSON do
-  def index(%{message: message}), do: message
+  def index(%{user_readings: user_readings}), do: %{data: user_readings}
 end

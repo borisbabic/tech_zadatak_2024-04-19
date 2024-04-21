@@ -42,6 +42,13 @@ defmodule GlookoWeb do
 
       import Plug.Conn
 
+      @spec render_error(Plug.Conn.t(), Glooko.Error.t()) :: Plug.Conn.t()
+      def render_error(conn, %Glooko.Error{} = error) do
+        conn
+        |> put_status(error.code)
+        |> json(%{error: error})
+      end
+
       unquote(verified_routes())
     end
   end

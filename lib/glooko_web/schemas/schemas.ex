@@ -10,12 +10,16 @@ defmodule GlookoWeb.Schemas do
       description: "A graph node",
       type: :object,
       properties: %{
-        timestamp: %Schema{type: :integer, description: "Timestamp in miliseconds"},
-        value: %Schema{type: :integer, description: "In mg/dL"}
+        timestamp: %Schema{
+          type: :string,
+          description: "Timestamp of when it was measured formatted in iso8601",
+          example: "2024-04-21T17:30:00Z"
+        },
+        glucose_value: %Schema{type: :integer, description: "In mg/dL"}
       },
       example: %{
         "timestamp" => 1_713_706_075_046,
-        "value" => 99
+        "glucose_value" => 99
       }
     })
   end
@@ -33,11 +37,11 @@ defmodule GlookoWeb.Schemas do
         "data" => [
           %{
             "timestamp" => 1_713_706_075_046,
-            "value" => 99
+            "glucose_value" => 99
           },
           %{
             "timestamp" => 1_713_706_999_999,
-            "value" => 120
+            "glucose_value" => 120
           }
         ]
       }
