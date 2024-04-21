@@ -4,6 +4,7 @@ defmodule GlookoWeb.CalendarController do
   use OpenApiSpex.ControllerSpecs
 
   alias GlookoWeb.Schemas.CalendarResponse
+  alias Glooko.Devices
 
   operation(:index,
     summary: "Get graph",
@@ -15,7 +16,8 @@ defmodule GlookoWeb.CalendarController do
     ]
   )
 
-  def index(conn, _params) do
-    json(conn, "Hello World")
+  def index(conn, %{"user_id" => user_id}) do
+    daily_device_readings = Devices.daily_user_devices_readings(user_id)
+    render(conn, :index, %{daily_device_readings: daily_device_readings})
   end
 end

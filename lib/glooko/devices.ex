@@ -197,4 +197,20 @@ defmodule Glooko.Devices do
   def change_device_reading(%DeviceReading{} = device_reading, attrs \\ %{}) do
     DeviceReading.changeset(device_reading, attrs)
   end
+
+  @type daily_device_readings :: %{device_id: integer(), date: String.t(), count: integer()}
+  @spec daily_user_devices_readings(user_id :: integer()) :: [daily_device_readings()]
+  def daily_user_devices_readings(user_id) do
+    from(dr in DeviceReading,
+      inner_join: d in assoc(dr, :device),
+      where: d.user_id == ^user_id,
+      select: %{
+        device_id: d.id,
+        date: fragment("?::date", dr.timestamp),
+        count: count(dr.id)
+      },
+      group_by: fragment("1, 2")
+    )
+    |> Repo.all()
+  end
 end
