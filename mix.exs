@@ -40,6 +40,7 @@ defmodule Glooko.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
+      {:open_api_spex, "~> 3.18"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"}
     ]

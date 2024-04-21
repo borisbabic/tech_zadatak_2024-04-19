@@ -38,8 +38,7 @@ defmodule GlookoWeb do
   def controller do
     quote do
       use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: GlookoWeb.Layouts]
+        formats: [:json]
 
       import Plug.Conn
 
